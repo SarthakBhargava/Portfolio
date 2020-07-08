@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <style>
+
+        @import url("https://fonts.googleapis.com/css?family=K2D");
+        .menu__toggler {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 999;
+            height: 28px;
+            width: 28px;
+            outline: none;
+            cursor: pointer;
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-align: center;
+                    align-items: center;
+        }
+
+        .menu__toggler span,
+        .menu__toggler span::before,
+        .menu__toggler span::after {
+            position: absolute;
+            content: '';
+            width: 28px;
+            height: 2.5px;
+            background: #fafafa;
+            border-radius: 20px;
+            -webkit-transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
+            transition: 500ms cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        
+        .menu__toggler span::before {
+            top: -8px;
+        }
+        
+        .menu__toggler span::after {
+            top: 8px;
+        }
+
+        .menu__toggler.active > span {
+            background: transparent;
+        }
+        
+        .menu__toggler.active > span::before, .menu__toggler.active > span::after {
+            background: #005c9c;
+            top: 0px;
+        }
+
+        .menu__toggler.active > span::before {
+            -webkit-transform: rotate(-225deg);
+                    transform: rotate(-225deg);
+        }
+
+        .menu__toggler.active > span::after {
+            -webkit-transform: rotate(225deg);
+                    transform: rotate(225deg);
+        }
+
+        /*
+        * SLIDING MENU PANEL
+        */
+        .menu {
+            position: fixed;
+            margin-top: -18px;
+            left: -30%;
+            z-index: 998;
+            color: #005c9c;
+            background: rgba(250, 250, 250, 0.7);
+            -webkit-clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+                    clip-path: polygon(0 0, 100% 0, 85% 100%, 0% 100%);
+            width: 30%;
+            height: 100%;
+            padding: 100px;
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+                    flex-direction: column;
+            -webkit-box-pack: center;
+                    justify-content: center;
+            -webkit-transition: 300ms left cubic-bezier(0.77, 0, 0.175, 1);
+            transition: 300ms left cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        @media only screen and (max-width: 600px) {
+            .menu {
+                width: 250px;
+                left: -250px;
+                padding: 50px;
+            }
+        }
+        
+        .menu.active {
+            left: 0;
+        }
+
+        .menu p {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            min-width: 80%;
+            background: linear-gradient(265deg, #ff3cac 0%, #784ba0 40%, #2b86c5 80%, #2b3483 100%);
+            font-family: 'K2D', sans-serif;
+            margin-left: 13%;
+            margin-right: 13%;
+            color: #fafafa;
+        }
+
+        .title {
+            margin-top: 120px;
+            text-transform: uppercase;
+            font-size: 45px;
+        }
+        
+        h1 {
+            mix-blend-mode: overlay;
+            margin-top: 120px;
+            text-transform: uppercase;
+            margin-left: 20px;
+        }
+
+        hr {
+            background-color: #fafafa;
+            opacity: 0.0;
+        }
+
+        h3, h2 {
+            color: #fafafa;
+            opacity: 0.8;
+        }
+
+        h2 a{
+            color: #fafafa;
+            opacity: 0.8;
+        }
+
+        h2 a:hover{
+            color: #000000;
+            text-decoration: underline;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000000;
+        }
+
+        a:hover {
+            text-decoration: none;
+            color: #3542b8;
+        }
+
+        a:active {
+            font-weight: bold;
+        }
+        
+        .profile {
+            margin-top: 120px;
+            margin-left: 200px;
+            margin-right: 200px;
+            display: -webkit-box;
+            display: flex;
+            -webkit-box-pack: center;
+                    justify-content: center;         
+        }
+
+        .photo {
+            border-radius: 800px; 
+            height: 300px;
+            width: 300px;
+            border: 10px solid #000000;
+        }
+
+        .email {
+            font-family: "Agency FB";
+        }
+
+        .education {
+            height: 100vh;
+        }
+        
+        .education-content {
+            margin-top: 130px;
+        }
+
+        .awards {
+            height: 100vh;
+        }
+        
+        .awards-content {
+            margin-top: 130px;
+        }
+
+        .skill {
+            height: 100vh;
+        }
+        
+        .skill-content {
+            margin-top: 170px;
+        }
+
+        .work-demo {
+            height: 100vh;
+        }
+        
+        .work-demo-content {
+            margin-top: 130px;
+        }
+
+        .flex-center {
+            width: 100%;
+            min-height: 20vh;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -webkit-justify-content: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -webkit-align-items: center;
+            -ms-flex-align: center;
+            align-items: center;
+            opacity: 0.8;
+        }
+
+        .icon-3d {
+            padding: 10px;
+            -webkit-animation: icon3d 1ms 10;
+            animation: icon3d 1ms 10;
+            color: #fff;
+        }
+        
+        .icon-3d:hover {
+            -webkit-animation: icon3d 1000ms infinite;
+            animation: icon3d 1000ms infinite;
+        }
+
+        @keyframes icon3d {
+            0% {
+              text-shadow: 5px 4px #f44336, -5px -6px #2196f3;
+            }
+            25% {
+              text-shadow: -5px -6px #f44336, 5px 4px #2196f3;
+            }
+            50% {
+              text-shadow: 5px -4px #f44336, -8px 4px #2196f3;
+            }
+            75% {
+              text-shadow: -8px -4px #f44336, -5px -4px #2196f3;
+            }
+            100% {
+              text-shadow: -5px 0 #f44336, 5px -4px #2196f3;
+            }
+        }
+        
+        .skill-detail {
+            visibility: hidden;
+            width: 100px;
+            height: auto;
+            color: #ffffff;
+        }
+
+        .skill a:hover .skill-detail {
+            visibility: visible;
+        }
+
+        .box {
+            width: 70%;
+            text-align: left;
+        }
+
+        footer {
+            width: 100%;
+            height: 30px;
+            color: #ffffff;
+            text-align: center;
+        }
+    </style>
+    <title>Sarthak Bhargava</title>
+    <link rel="icon" type="image/x-icon" href="Images/icon.png" />
+  </head>
+  <body>
+    
+    
+    <!--    Menu    -->
+    <div class="menu">
+        <p><a href="#ABOUT">About</a></p>
+        <p><a href="#EDUCATION">Education</a></p>
+        <p><a href="#AWARDS">Awards & Certifications</a></p>
+        <p><a href="#SKILLS">Skills</a></p>
+        <p><a href="#WORK_DEMO">Work Demo</a></p>
+    </div>
+    <div class="menu__toggler"><span></span></div>
+    <!--    Menu End    -->
+
+    <center>
+      <div id="ABOUT" class="about">
+        <hr>
+        <div class="profile">
+          <div class="row">
+            <img class="photo" src="Images/Image.jpeg">
+            <h1>Sarthak Bhargava</h1>
+          </div>
+        </div>
+        <br>
+        <h2 class="email">
+          INDORE | +91 8349584411 &nbsp; | &nbsp; <a href = "mailto: sarthak_bhargava@yahoo.com">SARTHAK_BHARGAVA@YAHOO.COM</a>
+        </h2>
+        <h5>
+          <br>
+          I am Professional Python Developer and Web Developer.
+          I have done multiple real World Project Like <b>Covid Tracker</b>, <b>E-Commerce Site</b> and <b>Expenses Tracker</b> using Python.
+          I am Data Science enthusiast and looking for Intership / Job.
+        </h5>
+        <div class="flex-center">
+          <a href="https://github.com/SarthakBhargava"><i class="fa fa-github fa-3x icon-3d"></i></a>&nbsp;
+          <a href="https://twitter.com/_s_a_r_t_h_a_k_"><i class="fa fa-twitter fa-3x icon-3d"></i></a>&nbsp;
+          <a href="https://www.linkedin.com/in/sarthak-bhargava"><i class="fa fa-linkedin fa-3x icon-3d"></i></a>&nbsp;
+          <a href="https://www.instagram.com/_sarthak_bhargava_"><i class="fa fa-instagram fa-3x icon-3d"></i></a>&nbsp;
+          <a href="https://wa.me/918349584411"><i class="fa fa-whatsapp fa-3x icon-3d"></i></a>
+        </div>
+      </div>
+
+      <div id="EDUCATION" class="education">
+        <hr>
+        <div class="education-content">
+          <p class="title">Education</p>
+          <br>
+          <h2><a href="http://www.svvv.edu.in/">SHRI VAIISHNAV VIDHYAPEETH VISHWAVIDYALAYA</a></h2>
+          <h3>BACHELOR OF TECHNOLOGY</h3>
+          <h3><span style="color: #000000">Computer Science</span></h3>          
+          <h3>GPA: <span style="color: #000000">6.2</span></h3>
+          <br>
+          <br>
+          <h2><a href="http://sva.ac.in/">SHRI VAISHNAV ACADEMY</a></h2>
+          <h3>( High School )</h3>
+          <br>
+          <h3>Class 12<sup>th</sup> - <span style="color: #000000;">Percentage 62.4%</span></h3>
+          <br>
+          <h3>Class 10<sup>th</sup> - <span style="color: #000000;">GPA: 7.0 </span></h3>
+        </div>
+      </div>
+
+      <div id="AWARDS" class="awards">
+        <hr>
+        <div class="awards-content">
+          <p class="title">Awards & Certifications</p>
+          <br>
+          <div class="box">
+            <h4><i class="fa fa-trophy" style="color: #FFFB00;"></i> Analytics Certified Developer</h4><br>
+            <h4><i class="fa fa-trophy" style="color: #FFFB00;"></i> Cleared NPTEL Program ( Data Structure and Algorithm Using Python ) Exam with 74% </h4><br>
+            <h4><i class="fa fa-trophy" style="color: #FFFB00;"></i> Python For Data Science By Cognitive Classes IBM</h4><br>
+            <h4><i class="fa fa-trophy" style="color: #FFFB00;"></i>Complete a virtual Experience of Internship by Insideshrpa</h4<br>
+          </div>
+          <br>
+          <br>
+          <br>
+          <h2>for viewing All Certifications go too link : </h2>
+          <h2><a href="https://drive.google.com/drive/folders/1d6E_zFyClnkv5C8lk-2MeqmzzOcXKmxe?usp=sharing">
+            Certificates
+          </a></h2>
+        </div>
+      </div>
+
+      <div id="SKILLS" class="skill">
+        <hr>
+        <div class="skill-content">
+          <p class="title">Skills</p>
+          <h5>
+            <br>
+            As I am a developer, I found myself comfortable with followings.<br><br>
+            Hover any Skill to show more details.
+            <br>
+            <br>
+            <div class="flex-center" style="margin-top: 20px;">
+              <a href="#"><i class="fab fa-python fa-3x icon-3d"></i><div class="skill-detail">Python<br>90%</div></a>
+              <a href="#"><i class="fab fa-html5 fa-3x icon-3d"></i><div class="skill-detail">HTML<br>90%</div></a>
+              <a href="#"><i class="fab fa-css3-alt fa-3x icon-3d"></i><div class="skill-detail">CSS<br>80%</div></a>
+              <a href="#"><i class="fab fa-wordpress fa-3x icon-3d"></i><div class="skill-detail">WordPress<br>70%</div></a>
+              <a href="#"><i class="fab fa-linux fa-3x icon-3d"></i><div class="skill-detail">Linux<br>50%</div></a>
+            </div>
+            <div class="flex-center">
+              <a href="#"><i class="fab fa-java fa-3x icon-3d"></i><div class="skill-detail">JAVA<br>60%</div></a>
+              <a href="#"><i class="fab fa-angular fa-3x icon-3d"></i><div class="skill-detail">Angular<br>40%</div></a>
+              <a href="#"><i class="fab fa-aws fa-3x icon-3d"></i><div class="skill-detail">AWS<br>40%</div></a>
+              <a href="#"><i class="fab fa-git fa-3x icon-3d"></i><div class="skill-detail">GIT<br>40%</div></a>
+            </div>
+          </h5>
+        </div>
+      </div>
+
+      <div id="WORK_DEMO" class="work-demo">
+        <hr>
+        <div class="work-demo-content">
+          <p class="title">Work Demo</p>
+          <br>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/BvAdGG1C5t4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border: 10px solid #000000;"></iframe>
+          <iframe width="560" height="315" src="https://www.youtube.com/embed/vFJHOJyPID8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="border: 10px solid #000000; margin-left: 5px;"></iframe>
+        </div>
+      </div>
+
+
+    </center>
+    <footer>
+      Copyright © 2020 Programmer's Bay. All Rights Reserved
+    </footer>
+
+    <script>
+
+        const toggler = document.querySelector('.menu__toggler');
+        const menu    = document.querySelector('.menu');
+        toggler.addEventListener('click', () => {
+            toggler.classList.toggle('active');
+            menu.classList.toggle('active');
+        })
+
+    </script>
+    
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
+
